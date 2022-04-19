@@ -1,0 +1,80 @@
+module ecommerce-app
+
+go 1.18
+
+require (
+	//github.com/alexbrainman/sspi v0.0.0-20180613141037-e580b900e9f5 // indirect
+	//github.com/armon/consul-api v0.0.0-20180202201655-eb2c6b5be1b6 // indirect
+	//github.com/coreos/bbolt v1.3.2 // indirect
+	//github.com/coreos/etcd v3.3.10+incompatible // indirect
+	//github.com/coreos/pkg v0.0.0-20180928190104-399ea9e2e55f // indirect
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
+	github.com/gin-gonic/gin v1.7.7
+	github.com/go-playground/validator/v10 v10.10.1
+	github.com/google/uuid v1.3.0
+	github.com/joho/godotenv v1.4.0
+	golang.org/x/crypto v0.0.0-20220411220226-7b82a4e95df4
+	//github.com/tmc/grpc-websocket-proxy v0.0.0-20190109142713-0ad062ec5ee5 // indirect
+	//github.com/xiang90/probing v0.0.0-20190116061207-43a291ad63a2 // indirect
+	//github.com/xordataexchange/crypt v0.0.3-0.20170626215501-b2862e3d0a77 // indirect
+	//go.etcd.io/bbolt v1.3.2 // indirect
+	//gopkg.in/jcmturner/aescts.v1 v1.0.1 // indirect
+	//gopkg.in/jcmturner/dnsutils.v1 v1.0.1 // indirect
+	//gopkg.in/jcmturner/goidentity.v3 v3.0.0 // indirect
+	//gopkg.in/jcmturner/gokrb5.v7 v7.5.0 // indirect
+	//gopkg.in/jcmturner/rpc.v1 v1.1.0 // indirect
+	//gopkg.in/resty.v1 v1.12.0 // indirect
+	gorm.io/driver/postgres v1.3.1
+	gorm.io/gorm v1.23.3
+)
+
+require (
+	github.com/go-openapi/swag v0.21.1
+	github.com/olivere/elastic v6.2.37+incompatible
+	github.com/sirupsen/logrus v1.8.1
+	github.com/swaggo/files v0.0.0-20210815190702-a29dd2bc99b2
+	github.com/swaggo/gin-swagger v1.4.1
+	gopkg.in/sohlich/elogrus.v3 v3.0.0-20180410122755-1fa29e2f2009
+)
+
+require (
+	github.com/KyleBanks/depth v1.2.1 // indirect
+	github.com/PuerkitoBio/purell v1.1.1 // indirect
+	github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578 // indirect
+	github.com/fortytw2/leaktest v1.3.0 // indirect
+	github.com/gin-contrib/sse v0.1.0 // indirect
+	github.com/go-openapi/jsonpointer v0.19.5 // indirect
+	github.com/go-openapi/jsonreference v0.19.6 // indirect
+	github.com/go-openapi/spec v0.20.4 // indirect
+	github.com/go-playground/locales v0.14.0 // indirect
+	github.com/go-playground/universal-translator v0.18.0 // indirect
+	github.com/golang/protobuf v1.5.2 // indirect
+	github.com/google/go-cmp v0.5.6 // indirect
+	github.com/jackc/chunkreader/v2 v2.0.1 // indirect
+	github.com/jackc/pgconn v1.10.1 // indirect
+	github.com/jackc/pgio v1.0.0 // indirect
+	github.com/jackc/pgpassfile v1.0.0 // indirect
+	github.com/jackc/pgproto3/v2 v2.2.0 // indirect
+	github.com/jackc/pgservicefile v0.0.0-20200714003250-2b9c44734f2b // indirect
+	github.com/jackc/pgtype v1.9.1 // indirect
+	github.com/jackc/pgx/v4 v4.14.1 // indirect
+	github.com/jinzhu/inflection v1.0.0 // indirect
+	github.com/jinzhu/now v1.1.4 // indirect
+	github.com/josharian/intern v1.0.0 // indirect
+	github.com/json-iterator/go v1.1.12 // indirect
+	github.com/leodido/go-urn v1.2.1 // indirect
+	github.com/lib/pq v1.10.4 // indirect
+	github.com/mailru/easyjson v0.7.6 // indirect
+	github.com/mattn/go-isatty v0.0.14 // indirect
+	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
+	github.com/modern-go/reflect2 v1.0.2 // indirect
+	github.com/pkg/errors v0.9.1 // indirect
+	github.com/swaggo/swag v1.7.9 // indirect
+	github.com/ugorji/go/codec v1.1.7 // indirect
+	golang.org/x/net v0.0.0-20220127200216-cd36cc0744dd // indirect
+	golang.org/x/sys v0.0.0-20211216021012-1d35b9e2eb4e // indirect
+	golang.org/x/text v0.3.7 // indirect
+	golang.org/x/tools v0.1.7 // indirect
+	google.golang.org/protobuf v1.27.1 // indirect
+	gopkg.in/yaml.v2 v2.4.0 // indirect
+)
