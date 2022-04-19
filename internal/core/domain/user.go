@@ -10,7 +10,7 @@ type User struct {
 	Address   string `json:"address,omitempty" gorm:"not null" form:"address"`
 	//HashedPassword  string `json:"-,omitempty" gorm:"not null"`
 	Password        string `json:"-" gorm:"-" binding:"required" form:"password"`
-	ConfirmPassword string `json:"confirm_password" gorm:"-" form:"confirm_password"`
+	ConfirmPass string `json:"confirm_password" gorm:"-" form:"confirm_password"`
 	BookmarkedItems []Item `gorm:"many2many:bookmarked_items" json:"bookmarked_items,omitempty"`
 	Image           string `json:"image,omitempty"`
 	RoleID          string `json:"role_id"`
