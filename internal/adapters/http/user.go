@@ -19,11 +19,6 @@ type userHandler struct {
 	handlerName string
 }
 
-var (
-	result  utils.Result
-	message types.Messages
-)
-
 // NewUserHandler function creates a new instance for user handler
 func NewUserHandler(cs ports.UserService, l *log.Logger, n string) ports.UserHandler {
 	return userHandler{
@@ -39,15 +34,15 @@ func (u userHandler) FindByID(c *gin.Context) {
 	if err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			u.logger.Error(err)
-			c.JSON(http.StatusNotFound, result.ReturnErrorResult(err.Error()))
+			utils.JSON(c, "", http.StatusNotFound, nil, []string{"404 page not found"})
 			return
 		}
-		c.JSON(http.StatusInternalServerError, result.ReturnErrorResult(err.Error()))
+		utils.JSON(c, "", http.StatusInternalServerError, nil, []string{"internal server error"})
 		u.logger.Error(err)
 		return
 	}
 
-	c.JSON(http.StatusOK, result.ReturnSuccessResult(user, message.GetResponseMessage(u.handlerName, types.OKAY)))
+	utils.JSON(c, "User found successfully", http.StatusOK, user, nil)
 }
 
 func (u userHandler) FindByEmail(c *gin.Context) {
@@ -56,15 +51,15 @@ func (u userHandler) FindByEmail(c *gin.Context) {
 	if err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			u.logger.Error(err)
-			c.JSON(http.StatusNotFound, result.ReturnErrorResult(err.Error()))
+			utils.JSON(c, "", http.StatusNotFound, nil, []string{"404 page not found"})
 			return
 		}
-		c.JSON(http.StatusInternalServerError, result.ReturnErrorResult(err.Error()))
+		utils.JSON(c, "", http.StatusInternalServerError, nil, []string{"internal server error"})
 		u.logger.Error(err)
 		return
 	}
 
-	c.JSON(http.StatusOK, result.ReturnSuccessResult(user, message.GetResponseMessage(u.handlerName, types.OKAY)))
+	utils.JSON(c, "User found successfully", http.StatusOK, user, nil)
 }
 
 func (u userHandler) FindByPhoneNumber(c *gin.Context) {
@@ -73,34 +68,33 @@ func (u userHandler) FindByPhoneNumber(c *gin.Context) {
 	if err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			u.logger.Error(err)
-			c.JSON(http.StatusNotFound, result.ReturnErrorResult(err.Error()))
+			utils.JSON(c, "", http.StatusNotFound, nil, []string{"404 page not found"})
 			return
 		}
-		c.JSON(http.StatusInternalServerError, result.ReturnErrorResult(err.Error()))
+		utils.JSON(c, "", http.StatusInternalServerError, nil, []string{"internal server error"})
 		u.logger.Error(err)
 		return
 	}
-
-	c.JSON(http.StatusOK, result.ReturnSuccessResult(user, message.GetResponseMessage(u.handlerName, types.OKAY)))
+	utils.JSON(c, "User found successfully", http.StatusOK, user, nil)
 }
 
 func (u userHandler) Create(c *gin.Context) {
 	body := &domain.User{}
 	if err := c.ShouldBindJSON(&body); err != nil {
 		u.logger.Error(err, "###")
-		c.JSON(http.StatusBadRequest, result.ReturnErrorResult(err.Error()))
+		utils.JSON(c, "", http.StatusBadRequest, nil, []string{"400 bad request"})
 		return
 	}
 	_, err := u.UserService.FindByEmail(body.Email)
 	if err == nil {
 		u.logger.Error(err)
-		c.JSON(http.StatusNotFound, gin.H{"error": "email already exists"})
+		utils.JSON(c, "", http.StatusNotFound, nil, []string{"email already exists"})
 		return
 	}
 	_, err = u.UserService.FindByPhoneNumber(body.Phone1)
 	if err == nil {
 		u.logger.Error(err)
-		c.JSON(http.StatusNotFound, gin.H{"error": "phone number already exists"})
+		utils.JSON(c, "", http.StatusNotFound, nil, []string{"phone number already exists"})
 		return
 	}
 	user := &domain.User{
@@ -112,27 +106,27 @@ func (u userHandler) Create(c *gin.Context) {
 	hash, err := bcrypt.GenerateFromPassword([]byte(body.Password), bcrypt.DefaultCost)
 	if err != nil {
 		u.logger.Error(err)
-		c.JSON(http.StatusInternalServerError, result.ReturnErrorResult(err.Error()))
+		utils.JSON(c, "", http.StatusInternalServerError, nil, []string{"internal server error"})
 		return
 	}
 	user.Password = string(hash)
 	err = u.UserService.Create(user)
 	if err != nil {
 		u.logger.Error(err)
-		c.JSON(http.StatusBadRequest, result.ReturnErrorResult(err.Error()))
+		utils.JSON(c, "", http.StatusBadRequest, nil, []string{"400 bad request"})
 		return
 	}
-	c.JSON(http.StatusCreated, result.ReturnSuccessResult(user, message.GetResponseMessage(u.handlerName, types.CREATED)))
+	utils.JSON(c, "User created successfully", http.StatusCreated, user, nil)
 }
 
 func (u userHandler) FindAllUsers(c *gin.Context) {
 	users, err := u.UserService.FindAllUsers()
 	if err != nil {
 		u.logger.Error(err)
-		c.JSON(http.StatusInternalServerError, result.ReturnErrorResult(err.Error()))
+		utils.JSON(c, "", http.StatusInternalServerError, nil, []string{"internal server error"})
 		return
 	}
-	c.JSON(http.StatusOK, result.ReturnSuccessResult(users, message.GetResponseMessage(u.handlerName, types.OKAY)))
+	utils.JSON(c, "Users found successfully", http.StatusCreated, users, nil)
 }
 
 //func (u userHandler) Login(c *gin.Context) {
